@@ -97,7 +97,7 @@ def modify_excel(ui_cookie):
         # 检测故障发生时间，只处理距离当日15天以上的故障（以后可屏蔽掉此功能）
         wTime = datetime.strptime(untreatedItem['alarmTime'], "%Y%m%d%H%M%S")
         e = today-wTime
-        if e.days < 14:
+        if e.days < 10:
             continue
 
         # 获取工作簿对象, 打开documentationTemplate.xlsx文件
@@ -126,7 +126,7 @@ def modify_excel(ui_cookie):
 
                 # 处理周期（处理开始时间~处理结束时间）
                 treatStartTimeClass = warningTimeClass + timedelta(days=random.randint(1,3))                                       # 处理开始时间datetime类，报警时间+随机数（1-7）
-                treatStopTimeClass = treatStartTimeClass + timedelta(days=random.randint(7,11))                                    # 处理结束时间datetime类，开始时间+随机数（10-15）
+                treatStopTimeClass = treatStartTimeClass + timedelta(days=random.randint(5,7))                                    # 处理结束时间datetime类，开始时间+随机数（10-15）
                 treatStartTime = datetime.strftime(treatStartTimeClass, "%Y{y}%m{m}%d{d}").format(y='年', m='月', d='日')            # 处理开始时间str
                 treatStopTime = datetime.strftime(treatStopTimeClass, "%Y{y}%m{m}%d{d}").format(y='年', m='月', d='日')              # 处理结束时间str
                 treatPeriod = treatStartTime + "～" + treatStopTime                                                                  # [输出至excel]处理周期字符串
