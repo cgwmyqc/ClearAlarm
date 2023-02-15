@@ -1,0 +1,55 @@
+<script type="text/javascript">
+        var a=0;
+        function cancel() {
+            close_win();
+        }
+        $(function(){
+            //获取回调函数
+            // callbackPage = top.getDialogResData();
+            $("#ff").validate({
+                submitHandler:function(form){
+                    $("#ff").form('submit',{
+                        url:"/sysSafeMessage/alarmSort",
+                        onSubmit: function(){
+                            var val=$('input:radio[name="alarm"]:checked').val();
+                            if(val==null||val==''){
+                                alert("请选择报警分类");
+                                return false;
+                            }
+                            var file = $('#file').val();
+                            if (file == null) {
+                                alert("请选择文件");
+                                return false;
+                            }
+                            return $(this).form('validate');
+                        },
+                        success:function(data){
+                            data = eval('(' + data + ')');
+                            $.messager.alert("提示",data.msg,"info",function(){
+                                if(data.flag){
+                                    window.top.cccc.call();
+                                    cancel();
+                                }
+                            });
+
+                        }
+                    });
+                    return false;
+                }
+            });
+        });
+        function addCar() {
+            a+=1;
+            var v1=document.getElementById("car0").innerHTML;
+            var v2='"'+"选择车辆型号"+'"';
+            var v3='"'+"/dialog/vehModelName.htm"+'"';
+            v1="<tr><td class='td_label'><label>车辆品牌：</label></td><td class='td_input'>" +
+                "<input type='hidden' name='id"+a+"' id='id"+a+"'value='-1'/>" +
+                "<input type='text'name='carBrand"+a+"'id='carBrand"+a+"'class='input-fat input'style='height: 22px;width: 180px'/></td><td class='td_label'><label>车辆型号：</label></td><td class='td_input'>" +
+                "<input type='text'name='carModel"+a+"'id='carModel"+a+"'class='input-fat input'style='height: 22px;width: 150px'onfocus='top.openSelectDialog(this,"+v2+","+v3+", 550, 620)'value=''></td></tr><tr><td class='td_label'><label>车牌：</label></td><td class='td_input'>" +
+                "<input type='text'name='carNum"+a+"'id='carNum"+a+"'class='input-fat input'style='height: 22px;width: 180px'/></td><td class='td_label'><label>VIN：</label></td><td class='td_input'>" +
+                "<input type='text'name='carVin"+a+"'id='carVin"+a+"'class='input-fat input'style='height: 22px;width: 180px'/></td></tr>";
+            $("#car0").append(v1);
+        }
+
+    </script>
