@@ -552,7 +552,7 @@ pip install pyinstaller
 
 ##### 7.3、创建build目录
 
-​		可以在项目目录中创建一个`build`文件夹，用以存放pyinstaller打包生成的两个目录`build`和`dist`。cmd进入该目录。
+​		可以在项目目录中创建一个`build`文件夹，用以存放pyinstaller打包生成的两个目录`build`和`dist`。虚拟环境中cd进入该目录。
 
 ![](.\img\1-pyinstaller.png)
 
