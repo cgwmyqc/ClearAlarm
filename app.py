@@ -94,10 +94,10 @@ def modify_excel(ui_cookie):
     # 给指定单元格赋值
     for untreatedItem in untreatedList:
 
-        # 检测故障发生时间，只处理距离当日5天以上的故障（以后可屏蔽掉此功能）
+        # 检测故障发生时间，只处理距离当日2天以上的故障（以后可屏蔽掉此功能）
         wTime = datetime.strptime(untreatedItem['alarmTime'], "%Y%m%d%H%M%S")
         e = today-wTime
-        if e.days <= 5:
+        if e.days <= 2:
             continue
 
         # 获取工作簿对象, 打开documentationTemplate.xlsx文件
