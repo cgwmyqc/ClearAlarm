@@ -29,7 +29,7 @@ def get_json(ui_cookie):
     header = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"}
 
     # request携带的登陆cookie
-    cookie = {"WEB_SESSION": ui_cookie}
+    cookie = {"JSESSIONID": ui_cookie}
 
     # 报警信息存储文件Json格式，文件目录为项目所在目录
     fileName = "warningInfo.json"
@@ -279,7 +279,7 @@ def upload_file(data, file_path, ui_cookie):
     print("已上传：",file_path, response, datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     # 延迟10-15s,采用QT自己的延迟函数，防止界面主线程在延迟的时候阻塞卡死.
-    QThread.sleep(random.randint(5,10))
+    QThread.sleep(random.randint(30,50))
 
 
 # if __name__ == "__main__":
